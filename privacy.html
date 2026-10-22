@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Chameleon</title>
+  <meta name="description" content="Chameleon doesn't collect anything. How the app handles your data, in plain terms.">
+  <meta name="theme-color" content="#0a0d18">
+  <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header scrolled" id="top">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Chameleon home">
+        <img src="assets/wordmark.svg" alt="Chameleon" width="164" height="30">
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a class="link" href="index.html#features">Features</a>
+        <a class="link" href="index.html#screens">Screenshots</a>
+        <a class="btn ghost" href="index.html">Back to the app</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="doc">
+    <div class="glow purple" aria-hidden="true"></div>
+    <div class="glow cyan" aria-hidden="true"></div>
+    <div class="wrap" style="position:relative; z-index:1">
+      <article>
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last updated October 2026</p>
+
+        <p class="summary"><strong>The short version:</strong> Chameleon doesn't collect anything. No analytics, no accounts on our end, no server of ours in the middle. The app runs on your device and talks directly to the Jellyfin server you point it at (and to YouTube, if you watch trailers from there).</p>
+
+        <p>This policy explains that in a bit more detail, in plain terms.</p>
+
+        <h2>Data we don't collect</h2>
+        <p>Chameleon does not collect, store, or transmit any personal data, usage statistics, or analytics to us or to any third party. We don't run a backend and there is no Chameleon server standing between you and your media — the app runs entirely on your device and talks directly to the Jellyfin server you point it at.</p>
+
+        <h2>What stays on your device</h2>
+        <p>Your server address, login session, and app preferences — theme, layout, playback settings — are stored locally on your device using standard platform storage. None of it is sent to us, because there's no "us" anywhere in that path: just your device and your server.</p>
+
+        <h2>Your Jellyfin server</h2>
+        <p>Chameleon is a client, not a service. Your library, watch history, user account, and any SyncPlay sessions live on the Jellyfin server you choose to connect to, governed by however that server's administrator — who might be you — has configured it. We have no access to it and no way to see it.</p>
+
+        <h2>Casting and other platforms</h2>
+        <p>Casting video to a Chromecast, or audio to AirPlay on iOS, uses the device discovery and streaming protocols built into Android and iOS by Google and Apple respectively. We don't add tracking on top of that, and no information about your casting session passes through us.</p>
+
+        <h2>Third-party services</h2>
+        <p>Chameleon doesn't embed analytics SDKs, crash reporters, or advertising libraries. The only network connections the app makes are ones you've effectively configured yourself: to your Jellyfin server, to a casting device on your own network, to YouTube for trailers (see below), and — if you choose a custom theme font — to Google Fonts to load the typeface.</p>
+
+        <h2>YouTube trailers</h2>
+        <p>Chameleon uses YouTube API Services to play trailers. When a movie or show has no trailer on your Jellyfin server, Chameleon can play its trailer from YouTube instead, in YouTube's own embedded player: as a preview when you rest on a title, in the featured banner, or when you select Trailer. Which video to play comes from your Jellyfin server's metadata for that title; Chameleon doesn't search YouTube or send it anything about you or your library.</p>
+        <p>When a YouTube trailer plays, your device connects to YouTube directly, and YouTube receives what any embedded YouTube player does, such as your IP address, device and browser information, and the video being watched, and may use cookies or similar technologies. Chameleon doesn't sign you in to YouTube, doesn't access your YouTube or Google account, and doesn't receive or store anything from YouTube about you. That data is handled by Google under the <a class="inline-link" href="https://policies.google.com/privacy">Google Privacy Policy</a>, and by playing YouTube trailers you agree to the <a class="inline-link" href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>.</p>
+        <p>You can turn off YouTube trailers, or trailer previews altogether, in Settings › Playback › Previews. Trailers stored on your own Jellyfin server play from your server, as any other video does. You can manage what Google keeps about you at <a class="inline-link" href="https://myaccount.google.com/data-and-privacy">myaccount.google.com/data-and-privacy</a>.</p>
+
+        <h2>Your data</h2>
+        <p>Since we don't collect or store anything, there's no personal information held by us to manage, export, or delete. What you'd want to manage — library data, watch history, account details — lives on your Jellyfin server, and is managed there.</p>
+
+        <h2>Changes to this policy</h2>
+        <p>If this policy changes, the update will be posted on this page with a new date above. We don't collect contact details, so we have no way to notify you directly — check back here if you want to be sure.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about this policy or the app can go through the project's GitHub repository: <a class="inline-link" href="https://github.com/jumpingfox-dev/chameleon/issues">github.com/jumpingfox-dev/chameleon/issues</a>.</p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Chameleon home"><img src="assets/wordmark.svg" alt="Chameleon" width="131" height="24"></a>
+      <nav aria-label="Footer">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="https://github.com/jumpingfox-dev/chameleon" rel="noopener">GitHub</a>
+        <a href="https://github.com/jumpingfox-dev/chameleon/issues" rel="noopener">Support</a>
+      </nav>
+      <p class="legal">Chameleon is a third-party app made with love for the Jellyfin community and isn't affiliated with the Jellyfin project.</p>
+    </div>
+  </footer>
+</body>
+</html>

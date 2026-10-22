@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chameleon — a beautiful Jellyfin client for Android TV and phones</title>
+  <meta name="description" content="Chameleon is a beautiful, deeply customizable Jellyfin client for Android TV, Google TV, phones and tablets. Dolby Vision, HDR, passthrough audio, themes and more — free, with no ads and no paywall.">
+  <meta name="theme-color" content="#0a0d18">
+  <link rel="canonical" href="https://chameleon.jumpingfox.dev/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Chameleon — your media, beautifully">
+  <meta property="og:description" content="A beautiful, deeply customizable Jellyfin client for Android TV, phones and tablets. Free, no ads, no paywall.">
+  <meta property="og:url" content="https://chameleon.jumpingfox.dev/">
+  <meta property="og:image" content="https://chameleon.jumpingfox.dev/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- Icons, drawn once and reused below. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M4.6 2.3a1.4 1.4 0 0 0-.6 1.2v17a1.4 1.4 0 0 0 .6 1.2l9.6-9.7zM15.6 13.4l2.7 2.7-11 6.3zM18.3 7.9l-2.7 2.7-8.3-8.4zM19.6 8.7l2.6 1.5c1 .6 1 2 0 2.6l-2.6 1.5-3-3z"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></symbol>
+      <symbol id="i-hdr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+      <symbol id="i-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></symbol>
+      <symbol id="i-skip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 5 9 7-9 7z"/><path d="M19 5v14"/></symbol>
+      <symbol id="i-scrub" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="11" rx="2"/><path d="M3 20h18"/><circle cx="9" cy="20" r="1.6" fill="currentColor"/></symbol>
+      <symbol id="i-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="M20 7v10"/><path d="m8.5 9.5 3 2.5-3 2.5z" fill="currentColor"/></symbol>
+      <symbol id="i-subs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M7 15h4M14 15h3M7 11.5h2M12 11.5h5"/></symbol>
+      <symbol id="i-together" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M16 14.2A5 5 0 0 1 21 19"/></symbol>
+      <symbol id="i-cast" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"/><path d="M3 12a8 8 0 0 1 8 8M3 16a4 4 0 0 1 4 4"/><path d="M3 20h.01"/></symbol>
+      <symbol id="i-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10.5 10.5 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/><path d="M12 19h.01"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+      <symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header" id="top">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Chameleon home">
+        <img src="assets/wordmark.svg" alt="Chameleon" width="164" height="30">
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a class="link" href="#features">Features</a>
+        <a class="link" href="#playback">Playback</a>
+        <a class="link" href="#screens">Screenshots</a>
+        <a class="link" href="privacy.html">Privacy</a>
+        <a class="btn ghost" href="https://github.com/jumpingfox-dev/chameleon" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-github"/></svg>GitHub
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ─── Hero ───────────────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="glow purple" aria-hidden="true"></div>
+      <div class="glow cyan" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-text reveal">
+          <p class="eyebrow">A Jellyfin client for TVs, phones and tablets</p>
+          <h1>Your media, <span class="accent">beautifully.</span></h1>
+          <p class="lead">One app for every screen: built for the remote on Android TV and Google TV, and for your thumb on phones and tablets. Every feature included — free, with no ads and no paywall.</p>
+          <div class="buttons">
+            <a class="btn primary" href="https://play.google.com/store/apps/details?id=dev.jumpingfox.chameleon" rel="noopener">
+              <svg aria-hidden="true"><use href="#i-play"/></svg>
+              <span class="two-line"><small>GET IT ON</small>Google Play</span>
+            </a>
+            <a class="btn ghost" href="https://github.com/jumpingfox-dev/chameleon" rel="noopener">
+              <svg aria-hidden="true"><use href="#i-github"/></svg>View the source
+            </a>
+          </div>
+          <p class="note">Needs your own <a href="https://jellyfin.org" rel="noopener">Jellyfin</a> server.</p>
+        </div>
+        <div class="hero-devices reveal delay">
+          <div class="tv"><img src="assets/shots/tv-home.webp" alt="Chameleon's home screen on a TV, with a featured banner for Sprite Fright and a Continue Watching row" width="1920" height="1080" fetchpriority="high"></div>
+          <div class="phone"><img src="assets/shots/phone-home.webp" alt="Chameleon's home screen on a phone" width="720" height="1440"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Highlights ─────────────────────────────────────────────────── -->
+    <section class="highlights" aria-label="Highlights">
+      <div class="wrap">
+        <ul class="reveal">
+          <li><strong>Free, for real</strong><span>Every feature included. No ads, no subscription, no unlock.</span></li>
+          <li><strong>Dolby Vision &amp; HDR</strong><span>HDR10, HLG, HDR10+ and Dolby Vision where your TV supports it.</span></li>
+          <li><strong>Lossless sound</strong><span>Dolby Atmos, DTS and TrueHD passed straight to your receiver.</span></li>
+          <li><strong>Every screen</strong><span>Android TV, Google TV, phones and tablets. Same look, same settings.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ─── Big screen ─────────────────────────────────────────────────── -->
+    <section class="feature" id="features">
+      <div class="glow purple a" aria-hidden="true" style="left:-240px; top:10%"></div>
+      <div class="glow cyan b" aria-hidden="true" style="right:-200px; bottom:0"></div>
+      <div class="wrap feature-grid">
+        <div class="feature-text reveal">
+          <p class="eyebrow">Built for the remote</p>
+          <h2>Made for the big screen.</h2>
+          <p class="lead">Big artwork, clear focus and rows that glide with your remote. Everything is a click or two away, from the couch.</p>
+          <ul class="checks">
+            <li><div>Build your own home: <span>Continue Watching, Next Up, Recently Added, Because You Watched, genres, collections and more, in any order.</span></div></li>
+            <li><div>One menu for it all: <span>search, favorites, genres and every library.</span></div></li>
+            <li><div>Sign in with Quick Connect: <span>no typing passwords on the TV.</span></div></li>
+            <li><div>A screensaver that fits: <span>your library's artwork, a poster wall, a clock or a floating logo.</span></div></li>
+          </ul>
+        </div>
+        <div class="reveal delay">
+          <div class="tv"><img src="assets/shots/tv-rows.webp" alt="Rows of movies on the TV home screen: Recently Added and Suggested For You" width="1920" height="1080" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Trailers ───────────────────────────────────────────────────── -->
+    <section class="feature flip">
+      <div class="glow cyan a" aria-hidden="true" style="left:-180px; top:20%"></div>
+      <div class="glow purple b" aria-hidden="true" style="right:-160px; top:0"></div>
+      <div class="wrap feature-grid">
+        <div class="feature-text reveal">
+          <p class="eyebrow"><span class="badge">New</span> Trailer previews</p>
+          <h2>Trailers, right where you're looking.</h2>
+          <p class="lead">Rest on a movie or show for a moment and its trailer starts playing right in the card. Posters widen to fit it, and the featured banner plays one too.</p>
+          <ul class="checks">
+            <li><div>Your server's trailers first, <span>then the title's trailer on YouTube.</span></div></li>
+            <li><div>Your call: <span>turn previews off, choose the delay, or play them with sound.</span></div></li>
+            <li><div>A Trailer button <span>on every movie and show page, too.</span></div></li>
+          </ul>
+        </div>
+        <div class="reveal delay">
+          <div class="tv"><img src="assets/shots/tv-trailer.webp" alt="A trailer playing inside a card in the Recently Added row" width="1920" height="1080" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Themes ─────────────────────────────────────────────────────── -->
+    <section class="feature" id="themes">
+      <div class="glow purple a" aria-hidden="true" data-theme-glow style="left:-200px; bottom:0; transition: background .6s ease"></div>
+      <div class="glow emerald b" aria-hidden="true" style="right:-180px; top:5%"></div>
+      <div class="wrap feature-grid">
+        <div class="feature-text reveal">
+          <p class="eyebrow">Customization</p>
+          <h2>Make it <span class="accent">yours.</span></h2>
+          <p class="lead">Chameleon changes to suit you. Pick a theme, or build your own from any two colors, then choose the fonts and icons to match.</p>
+          <ul class="checks">
+            <li><div>Eight themes, <span>or a custom one from any two colors.</span></div></li>
+            <li><div>Any Google Font <span>for headings, text and subtitles.</span></div></li>
+            <li><div>Five icon styles, <span>and posters or thumbnails for every section.</span></div></li>
+            <li><div>Profiles <span>with their own theme, fonts and playback settings.</span></div></li>
+          </ul>
+          <div class="swatches" role="group" aria-label="Preview a theme">
+            <button type="button" style="--sw:#7c3aed" aria-pressed="true" data-theme="default" aria-label="Default theme"></button>
+            <button type="button" style="--sw:#10b981" aria-pressed="false" data-theme="emerald" aria-label="Emerald theme"></button>
+          </div>
+          <p class="swatches-label">Try a theme: <span data-theme-name>Default</span></p>
+        </div>
+        <div class="reveal delay">
+          <div class="phones">
+            <div class="phone"><img src="assets/shots/phone-themes.webp" alt="The theme picker in Settings" width="720" height="1440" loading="lazy"></div>
+            <div class="phone"><img src="assets/shots/phone-home.webp" alt="The home screen in the selected theme" width="720" height="1440" loading="lazy" data-theme-shot></div>
+            <div class="phone"><img src="assets/shots/phone-settings.webp" alt="Font settings, with a different Google Font for headings, text and subtitles" width="720" height="1440" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Playback ───────────────────────────────────────────────────── -->
+    <section class="feature" id="playback">
+      <div class="glow purple a" aria-hidden="true" style="left:30%; top:-10%; opacity:.25"></div>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Playback</p>
+          <h2>Picture and sound, untouched.</h2>
+          <p class="lead">Chameleon plays what your server has the way it was made: the best picture your TV can show, and surround sound sent to your receiver bit for bit.</p>
+        </div>
+        <div class="cards big reveal">
+          <div class="card">
+            <div class="icon"><svg aria-hidden="true"><use href="#i-hdr"/></svg></div>
+            <h3>High dynamic range</h3>
+            <p>HDR plays as HDR, and Dolby Vision as Dolby Vision on devices that support it, with a second player engine standing by for anything the first can't handle.</p>
+            <div class="formats"><span>Dolby Vision</span><span>HDR10+</span><span>HDR10</span><span>HLG</span></div>
+          </div>
+          <div class="card">
+            <div class="icon"><svg aria-hidden="true"><use href="#i-sound"/></svg></div>
+            <h3>Passthrough audio</h3>
+            <p>Lossless and surround tracks go straight to your receiver or soundbar untouched, and decoded surround stays surround.</p>
+            <div class="formats"><span>Dolby Atmos</span><span>TrueHD</span><span>Dolby Digital+</span><span>DTS</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Everything else ────────────────────────────────────────────── -->
+    <section class="feature" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>All the good stuff.</h2>
+          <p class="lead">The features other Jellyfin apps keep behind a subscription or a one-time unlock are all here, for everyone.</p>
+        </div>
+        <div class="cards reveal">
+          <div class="card"><div class="icon"><svg aria-hidden="true"><use href="#i-skip"/></svg></div><h3>Skip intros and credits</h3><p>Automatically, or at the press of a button. Recaps too.</p></div>
+          <div class="card"><div class="icon"><svg aria-hidden="true"><use href="#i-scrub"/></svg></div><h3>Thumbnail scrubbing</h3><p>See where you're going as you seek, and jump through any library with the A–Z bar.</p></div>
+          <div class="card"><div class="icon"><svg aria-hidden="true"><use href="#i-next"/></svg></div><h3>Up Next</h3><p>The next episode starts on its own, with an "Are you still watching?" check.</p></div>
+          <div class="card"><div class="icon"><svg aria-hidden="true"><use href="#i-subs"/></svg></div><h3>Subtitles your way</h3><p>Font, size, color, outline or background, and how high they sit.</p></div>
+          <div class="card"><div class="icon"><svg aria-hidden="true"><use href="#i-together"/></svg></div><h3>Watch together</h3><p>SyncPlay keeps everyone on the same frame, wherever they are.</p></div>
+          <div class="card"><div class="icon"><svg aria-hidden="true"><use href="#i-cast"/></svg></div><h3>Chromecast</h3><p>Cast from your phone and use it as the remote.</p></div>
+          <div class="card"><div class="icon"><svg aria-hidden="true"><use href="#i-wifi"/></svg></div><h3>Quality limits</h3><p>Separate limits for Wi-Fi and mobile data, so you never burn through a plan.</p></div>
+          <div class="card"><div class="icon"><svg aria-hidden="true"><use href="#i-moon"/></svg></div><h3>Screensavers</h3><p>Artwork, a poster wall, a clock or a floating logo, each with its own options.</p></div>
+          <div class="card"><div class="icon"><svg aria-hidden="true"><use href="#i-server"/></svg></div><h3>Server at a glance</h3><p>Check your server, scan libraries and see who's watching, right from Settings.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Screenshots ────────────────────────────────────────────────── -->
+    <section class="gallery" id="screens">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Take a look around.</h2>
+        </div>
+        <div class="tabs-row">
+          <div class="tabs" role="tablist" aria-label="Screenshots">
+            <button type="button" role="tab" id="tab-tv" aria-controls="strip-tv" aria-selected="true">TV</button>
+            <button type="button" role="tab" id="tab-phone" aria-controls="strip-phone" aria-selected="false" tabindex="-1">Phone</button>
+          </div>
+        </div>
+      </div>
+      <div class="strip-wrap">
+        <div class="strip tv-strip" id="strip-tv" role="tabpanel" aria-labelledby="tab-tv">
+          <figure><button class="zoom" type="button"><div class="tv"><img src="assets/shots/tv-home.webp" alt="Home screen with the featured banner" width="1920" height="1080" loading="lazy"></div></button><figcaption>A featured banner for every visit</figcaption></figure>
+          <figure><button class="zoom" type="button"><div class="tv"><img src="assets/shots/tv-sidebar.webp" alt="The sidebar menu open over the home screen" width="1920" height="1080" loading="lazy"></div></button><figcaption>Everything in one menu</figcaption></figure>
+          <figure><button class="zoom" type="button"><div class="tv"><img src="assets/shots/tv-detail.webp" alt="A movie's detail page with cast" width="1920" height="1080" loading="lazy"></div></button><figcaption>Ratings, cast and seasons</figcaption></figure>
+          <figure><button class="zoom" type="button"><div class="tv"><img src="assets/shots/tv-library.webp" alt="A library sorted A to Z with the letter bar" width="1920" height="1080" loading="lazy"></div></button><figcaption>Every library, A to Z</figcaption></figure>
+          <figure><button class="zoom" type="button"><div class="tv"><img src="assets/shots/tv-home-theme.webp" alt="The home screen in the Emerald theme" width="1920" height="1080" loading="lazy"></div></button><figcaption>Your theme, everywhere</figcaption></figure>
+          <figure><button class="zoom" type="button"><div class="tv"><img src="assets/shots/tv-settings.webp" alt="Font settings on the TV" width="1920" height="1080" loading="lazy"></div></button><figcaption>Any Google Font</figcaption></figure>
+        </div>
+        <div class="strip phone-strip" id="strip-phone" role="tabpanel" aria-labelledby="tab-phone" hidden>
+          <figure><button class="zoom" type="button"><div class="phone"><img src="assets/shots/phone-home.webp" alt="Home screen on a phone" width="720" height="1440" loading="lazy"></div></button><figcaption>Home</figcaption></figure>
+          <figure><button class="zoom" type="button"><div class="phone"><img src="assets/shots/phone-detail.webp" alt="A movie's detail page on a phone" width="720" height="1440" loading="lazy"></div></button><figcaption>Details</figcaption></figure>
+          <figure><button class="zoom" type="button"><div class="phone"><img src="assets/shots/phone-library.webp" alt="A library with the A to Z bar on a phone" width="720" height="1440" loading="lazy"></div></button><figcaption>Libraries</figcaption></figure>
+          <figure><button class="zoom" type="button"><div class="phone"><img src="assets/shots/phone-home-theme.webp" alt="The home screen in the Emerald theme on a phone" width="720" height="1440" loading="lazy"></div></button><figcaption>Themes</figcaption></figure>
+          <figure><button class="zoom" type="button"><div class="phone"><img src="assets/shots/phone-themes.webp" alt="The theme picker on a phone" width="720" height="1440" loading="lazy"></div></button><figcaption>Eight themes, or your own</figcaption></figure>
+          <figure><button class="zoom" type="button"><div class="phone"><img src="assets/shots/phone-settings.webp" alt="Font settings on a phone" width="720" height="1440" loading="lazy"></div></button><figcaption>Fonts</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Get it ─────────────────────────────────────────────────────── -->
+    <section class="cta">
+      <div class="wrap">
+        <div class="cta-box reveal">
+          <img class="mark" src="assets/mark.svg" alt="" width="64" height="73">
+          <h2>Bring your library to life.</h2>
+          <p class="lead">Free on Google Play for Android TV, Google TV, phones and tablets.</p>
+          <div class="buttons">
+            <a class="btn primary" href="https://play.google.com/store/apps/details?id=dev.jumpingfox.chameleon" rel="noopener">
+              <svg aria-hidden="true"><use href="#i-play"/></svg>
+              <span class="two-line"><small>GET IT ON</small>Google Play</span>
+            </a>
+            <a class="btn ghost" href="https://github.com/jumpingfox-dev/chameleon/issues" rel="noopener">Report a bug or ask for a feature</a>
+          </div>
+          <p class="note">You'll need your own Jellyfin server. New to Jellyfin? <a href="https://jellyfin.org/docs/general/quick-start/" rel="noopener">Start here</a>.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Back to top"><img src="assets/wordmark.svg" alt="Chameleon" width="131" height="24"></a>
+      <nav aria-label="Footer">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="https://github.com/jumpingfox-dev/chameleon" rel="noopener">GitHub</a>
+        <a href="https://github.com/jumpingfox-dev/chameleon/issues" rel="noopener">Support</a>
+      </nav>
+      <p class="legal">Chameleon is a third-party app made with love for the Jellyfin community and isn't affiliated with the Jellyfin project. Google Play, Android TV and Google TV are trademarks of Google LLC. Artwork shown is from public-domain and Creative Commons films.</p>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Screenshot">
+    <form method="dialog"><button class="close" aria-label="Close">&times;</button></form>
+    <img alt="">
+  </dialog>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
